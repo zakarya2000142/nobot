@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}ساعات کاری{% endblock %}
+{% block content %}
+
+<h1><i class="fas fa-clock"></i> ساعات کاری</h1>
+
+<div class="alert alert-warning">
+    <i class="fas fa-info-circle"></i>
+    برای هر روز، ساعت شروع و پایان کارت رو تنظیم کن. اگه تعطیلی، تیک «تعطیل» رو بزن.
+</div>
+
+<form method="post">
+    <table>
+        <tr>
+            <th>روز</th>
+            <th>ساعت شروع</th>
+            <th>ساعت پایان</th>
+            <th>تعطیل</th>
+        </tr>
+
+        {% set days = ["شنبه", "یکشنبه", "دوشنبه", "سه‌شنبه", "چهارشنبه", "پنجشنبه", "جمعه"] %}
+
+        {% for day in range(7) %}
+        {% set h = namespace(start="09:00", end="21:00", closed=0) %}
+        {% for wh in hours %}
+            {% if wh.day_of_week == day %}
+                {% set h.start = wh.start_time %}
+                {% set h.end = wh.end_time %}
+                {% set h.closed = wh.is_closed %}
+            {% endif %}
+        {% endfor %}
+
+        <tr>
+            <td>{{ days[day] }}</td>
+            <td><input type="time" name="start_{{ day }}" value="{{ h.start }}" style="width:auto;"></td>
+            <td><input type="time" name="end_{{ day }}" value="{{ h.end }}" style="width:auto;"></td>
+            <td>
+                <input type="checkbox" name="closed_{{ day }}" value="1" {% if h.closed %}checked{% endif %} style="width:auto;">
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <button type="submit" style="margin-top:20px;"><i class="fas fa-save"></i> ذخیره</button>
+</form>
+
+{% endblock %}
