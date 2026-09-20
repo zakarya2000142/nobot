@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}نوبت‌گیری{% endblock %}
+{% block content %}
+
+<div style="max-width:500px; margin:40px auto;">
+    <div style="text-align:center; margin-bottom:30px;">
+        <div style="font-size:50px; color:#6C63FF; margin-bottom:15px;">
+            <i class="fas fa-store"></i>
+        </div>
+        <h1 style="font-size:24px;">{{ business.name }}</h1>
+        <p style="color:#888; font-size:14px;">{{ business.address or "" }}</p>
+    </div>
+
+    {% if success %}
+    <div class="alert alert-success">
+        <i class="fas fa-check-circle"></i> {{ success }}
+    </div>
+    {% endif %}
+
+    <form method="post">
+        <div class="form-group">
+            <label><i class="fas fa-briefcase"></i> انتخاب خدمت</label>
+            <select name="service_id" required>
+                <option value="">یه خدمت انتخاب کن</option>
+                {% for s in services %}
+                <option value="{{ s.id }}">{{ s.name }} - {{ "{:,}".format(s.price) }} تومان - {{ s.duration }} دقیقه</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label><i class="fas fa-user"></i> اسم شما</label>
+            <input type="text" name="customer_name" placeholder="مثلاً: علی رضایی" required>
+        </div>
+
+        <div class="form-group">
+            <label><i class="fas fa-phone"></i> شماره موبایل</label>
+            <input type="text" name="customer_phone" placeholder="09123456789" required>
+            <div class="hint">با این شماره می‌تونی نوبتت رو پیگیری کنی.</div>
+        </div>
+
+        <div class="form-group">
+            <label><i class="fas fa-calendar-alt"></i> تاریخ</label>
+            <input type="date" name="date" required>
+        </div>
+
+        <div class="form-group">
+            <label><i class="fas fa-clock"></i> ساعت</label>
+            <input type="time" name="time" required>
+        </div>
+
+        <button type="submit" style="width:100%; justify-content:center;">
+            <i class="fas fa-check"></i> ثبت نوبت
+        </button>
+    </form>
+
+    <div style="text-align:center; margin-top:20px;">
+        <a href="/customer" style="color:#6C63FF;"><i class="fas fa-arrow-right"></i> بازگشت</a>
+    </div>
+</div>
+
+{% endblock %}
