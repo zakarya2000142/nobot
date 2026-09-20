@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}نوبت‌دهی آنلاین{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: Vazirmatn, Tahoma; background: #F7F8FC; color: #3F3D56; }
+        a { text-decoration: none; color: inherit; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+
+        /* نوار بالا */
+        .topbar { background: white; padding: 15px 25px; border-radius: 16px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; }
+        .topbar .brand { font-size: 20px; font-weight: bold; color: #6C63FF; display: flex; align-items: center; gap: 10px; }
+        .topbar .brand i { font-size: 26px; }
+        .topbar .user { color: #666; font-size: 15px; display: flex; align-items: center; gap: 15px; }
+        .topbar .logout { color: #E53935; font-size: 15px; display: flex; align-items: center; gap: 5px; }
+
+        /* منو */
+        .nav { background: white; padding: 15px; border-radius: 16px; margin-bottom: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+        .nav a { padding: 10px 20px; background: #F7F8FC; color: #3F3D56; border-radius: 12px; font-size: 15px; display: flex; align-items: center; gap: 8px; transition: all 0.2s; }
+        .nav a:hover { background: #6C63FF; color: white; }
+        .nav a i { font-size: 20px; }
+
+        /* کارت‌ها */
+        .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 30px; }
+        .card { background: white; padding: 25px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: center; transition: transform 0.2s; }
+        .card:hover { transform: translateY(-5px); }
+        .card .card-icon { font-size: 48px; color: #6C63FF; margin-bottom: 15px; }
+        .card h3 { color: #888; font-size: 14px; margin-bottom: 10px; }
+        .card p { color: #3F3D56; font-size: 24px; font-weight: bold; }
+
+        /* فرم‌ها */
+        form { background: white; padding: 25px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 25px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 8px; font-size: 14px; color: #555; }
+        label i { font-size: 18px; color: #6C63FF; margin-left: 5px; }
+        input, select, textarea { width: 100%; padding: 12px 15px; border: 1px solid #E0E0E0; border-radius: 12px; font-family: Vazirmatn; font-size: 15px; transition: border 0.2s; }
+        input:focus, select:focus { outline: none; border-color: #6C63FF; }
+        button { padding: 12px 30px; background: #6C63FF; color: white; border: none; border-radius: 12px; font-family: Vazirmatn; font-size: 15px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; transition: background 0.2s; }
+        button:hover { background: #5750d6; }
+
+        /* جدول */
+        table { width: 100%; background: white; border-collapse: separate; border-spacing: 0; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        th { background: #6C63FF; color: white; padding: 15px; font-size: 15px; }
+        td { padding: 15px; text-align: center; border-bottom: 1px solid #F0F0F0; font-size: 14px; }
+        tr:last-child td { border-bottom: none; }
+        tr:hover td { background: #F7F8FC; }
+
+        /* دکمه‌های کوچک */
+        .btn-sm { padding: 8px 15px; font-size: 13px; border-radius: 8px; }
+        .btn-green { background: #4CAF50; }
+        .btn-green:hover { background: #3d8b40; }
+        .btn-red { background: #E53935; }
+        .btn-red:hover { background: #c62828; }
+        .btn-orange { background: #FF9800; }
+        .btn-orange:hover { background: #e68900; }
+
+        /* هشدارها */
+        .alert { padding: 15px 20px; border-radius: 12px; margin-bottom: 20px; font-size: 14px; text-align: center; }
+        .alert-error { background: #FFEBEE; color: #C62828; }
+        .alert-success { background: #E8F5E9; color: #2E7D32; }
+        .alert-warning { background: #FFF3CD; color: #856404; }
+
+        /* راهنما */
+        .hint { font-size: 12px; color: #999; margin-top: 5px; }
+        .tooltip-icon { display: inline-block; color: #6C63FF; cursor: help; margin-right: 5px; }
+
+        /* عنوان */
+        h1 { color: #3F3D56; text-align: center; margin-bottom: 25px; font-size: 26px; }
+        h1 i { color: #6C63FF; margin-left: 10px; }
+
+        /* ریسپانسیو */
+        @media (max-width: 600px) {
+            .topbar { flex-direction: column; gap: 10px; text-align: center; }
+            .nav { flex-direction: column; }
+            .cards { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% if session.business_id %}
+        <div class="topbar">
+            <div class="brand">
+                <i class="fas fa-calendar-check"></i>
+                نوبت‌دهی آنلاین
+            </div>
+            <div class="user">
+                <span><i class="fas fa-store"></i> {{ session.business_name }}</span>
+                <a href="/logout" class="logout"><i class="fas fa-sign-out-alt"></i> خروج</a>
+            </div>
+        </div>
+        <div class="nav">
+            <a href="/dashboard"><i class="fas fa-home"></i> داشبورد</a>
+            <a href="/services"><i class="fas fa-briefcase"></i> خدمات</a>
+            <a href="/working_hours"><i class="fas fa-clock"></i> ساعات کاری</a>
+            <a href="/appointments"><i class="fas fa-calendar-check"></i> نوبت‌ها</a>
+            <a href="/admin"><i class="fas fa-chart-bar"></i> گزارش‌ها</a>
+        </div>
+        {% endif %}
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
