@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}فراموشی رمز{% endblock %}
+{% block content %}
+
+<div style="max-width:400px; margin:60px auto;">
+    <div style="text-align:center; margin-bottom:30px;">
+        <div style="font-size:60px; color:#6C63FF; margin-bottom:15px;">
+            <i class="fas fa-key"></i>
+        </div>
+        <h1 style="font-size:24px;">فراموشی رمز</h1>
+        <p style="color:#888; font-size:14px;">شماره موبایلی که باهاش ثبت‌نام کردی رو وارد کن.</p>
+    </div>
+
+    <form method="post">
+        {% if error %}
+        <div class="alert alert-error">{{ error }}</div>
+        {% endif %}
+        {% if success %}
+        <div class="alert alert-success">{{ success }}</div>
+        {% endif %}
+
+        <div class="form-group">
+            <label><i class="fas fa-phone"></i> شماره موبایل</label>
+            <input type="text" name="phone" placeholder="09123456789" required>
+        </div>
+
+        <button type="submit" style="width:100%; justify-content:center;">
+            <i class="fas fa-search"></i> بازیابی
+        </button>
+    </form>
+
+    <div style="text-align:center; margin-top:20px;">
+        <a href="/login" style="color:#6C63FF;">بازگشت به صفحه ورود</a>
+    </div>
+</div>
+
+{% endblock %}
