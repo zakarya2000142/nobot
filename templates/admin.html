@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}گزارش‌ها{% endblock %}
+{% block content %}
+
+<h1><i class="fas fa-chart-bar"></i> کسب‌وکارها</h1>
+
+{% if businesses %}
+<table>
+    <tr>
+        <th>ID</th>
+        <th>نام کسب‌وکار</th>
+        <th>صاحب</th>
+        <th>شماره</th>
+        <th>نام کاربری</th>
+        <th>تاریخ عضویت</th>
+        <th>اشتراک تا</th>
+    </tr>
+    {% for b in businesses %}
+    <tr>
+        <td>{{ b.id }}</td>
+        <td>{{ b.name }}</td>
+        <td>{{ b.owner_name }}</td>
+        <td>{{ b.phone }}</td>
+        <td>{{ b.username }}</td>
+        <td>{{ b.created_at }}</td>
+        <td>{{ b.subscription_end }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<div class="alert alert-warning">
+    <i class="fas fa-info-circle"></i> هنوز کسب‌وکاری ثبت نشده.
+</div>
+{% endif %}
+
+{% endblock %}
