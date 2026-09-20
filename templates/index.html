@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}نوبت‌دهی آنلاین{% endblock %}
+{% block content %}
+
+<div style="text-align:center; padding:80px 20px;">
+    <div style="font-size:80px; color:#6C63FF; margin-bottom:30px;">
+        <i class="fas fa-calendar-check"></i>
+    </div>
+    <h1 style="font-size:32px; margin-bottom:20px;">نوبت‌دهی آنلاین</h1>
+    <p style="color:#888; font-size:16px; margin-bottom:50px;">
+        راحت و سریع، بدون تماس تلفنی، نوبت بگیر
+    </p>
+
+    <div style="display:flex; gap:30px; justify-content:center; flex-wrap:wrap; max-width:700px; margin:0 auto;">
+
+        <a href="/login" style="flex:1; min-width:250px; background:white; padding:40px 30px; border-radius:20px; box-shadow:0 4px 15px rgba(0,0,0,0.05); transition:transform 0.3s; display:block;">
+            <div style="font-size:60px; color:#6C63FF; margin-bottom:20px;">
+                <i class="fas fa-store"></i>
+            </div>
+            <h3 style="font-size:20px; margin-bottom:10px;">من صاحب کسب‌وکارم</h3>
+            <p style="color:#888; font-size:14px;">مدیریت نوبت‌ها و خدمات</p>
+        </a>
+
+        <a href="/customer" style="flex:1; min-width:250px; background:white; padding:40px 30px; border-radius:20px; box-shadow:0 4px 15px rgba(0,0,0,0.05); transition:transform 0.3s; display:block;">
+            <div style="font-size:60px; color:#6C63FF; margin-bottom:20px;">
+                <i class="fas fa-user"></i>
+            </div>
+            <h3 style="font-size:20px; margin-bottom:10px;">من مشتری‌ام</h3>
+            <p style="color:#888; font-size:14px;">گرفتن نوبت آنلاین</p>
+        </a>
+
+    </div>
+</div>
+
+{% endblock %}
