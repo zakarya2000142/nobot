@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}انتخاب کسب‌وکار{% endblock %}
+{% block content %}
+
+<div style="max-width:600px; margin:40px auto;">
+    <div style="text-align:center; margin-bottom:30px;">
+        <div style="font-size:60px; color:#6C63FF; margin-bottom:15px;">
+            <i class="fas fa-search"></i>
+        </div>
+        <h1 style="font-size:24px;">انتخاب کسب‌وکار</h1>
+        <p style="color:#888; font-size:14px;">کسب‌وکاری که می‌خوای ازش نوبت بگیری رو انتخاب کن.</p>
+    </div>
+
+    {% if businesses %}
+    <div style="display:flex; flex-direction:column; gap:15px;">
+        {% for b in businesses %}
+        <a href="/book/{{ b.id }}" style="background:white; padding:20px 25px; border-radius:16px; box-shadow:0 4px 15px rgba(0,0,0,0.05); display:flex; justify-content:space-between; align-items:center; transition:transform 0.2s;">
+            <div style="display:flex; align-items:center; gap:15px;">
+                <div style="font-size:36px; color:#6C63FF;">
+                    <i class="fas fa-store"></i>
+                </div>
+                <div>
+                    <h3 style="font-size:18px; margin-bottom:5px;">{{ b.name }}</h3>
+                    <p style="color:#888; font-size:13px;">{{ b.address or "آدرس ثبت نشده" }}</p>
+                </div>
+            </div>
+            <i class="fas fa-arrow-left" style="color:#6C63FF; font-size:20px;"></i>
+        </a>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="alert alert-warning">
+        <i class="fas fa-info-circle"></i> هنوز کسب‌وکاری ثبت نشده.
+    </div>
+    {% endif %}
+
+    <div style="text-align:center; margin-top:30px;">
+        <a href="/" style="color:#6C63FF;"><i class="fas fa-arrow-right"></i> بازگشت به صفحه اصلی</a>
+    </div>
+</div>
+
+{% endblock %}
